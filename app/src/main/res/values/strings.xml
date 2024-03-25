@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MapApp</string>
+    <string name="description_zoom_in_button">Zoom in button</string>
+    <string name="description_zoom_out_button">Zoom out button</string>
+    <string name="description_location_button">My location search button</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
