@@ -3,6 +3,23 @@
     <string name="description_zoom_in_button">Zoom in button</string>
     <string name="description_zoom_out_button">Zoom out button</string>
     <string name="description_location_button">My location search button</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="description_icon_of_point">Icon of point</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="there_is_no_access_to_the_location">There is no access to the location</string>
+    <string name="location_could_not_be_determined">Location could not be determined</string>
+    <string name="do_you_want_to_save_this_location">Do you want to add this location to your favorites?</string>
+    <string name="saving_a_point">Saving a point</string>
+    <string name="cancel">Cancel</string>
+    <string name="add">Add</string>
+    <string name="description_the_options_button_for_the_point">The options button for the point</string>
+    <string name="edit">Edit</string>
+    <string name="menu_remove">Remove</string>
+    <string name="description_the_button_to_go_to_the_list_of_saved_locations">The button to go to the list of saved locations</string>
+    <string name="enter_the_new_name_of_the_point">Enter the new name of the point:</string>
+    <string name="name">Name</string>
+    <string name="save">Save</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="empty_text_error">You cannot save an empty text</string>
+    <string name="the_point_has_been_successfully_added_to_favorites">The point has been successfully added to favorites</string>
 </resources>
