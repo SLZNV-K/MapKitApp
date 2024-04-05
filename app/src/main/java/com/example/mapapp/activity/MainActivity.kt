@@ -5,22 +5,18 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import com.example.mapapp.R
 import com.yandex.mapkit.MapKitFactory
-import com.example.mapapp.databinding.ActivityMainBinding
 
 private const val MAP_KIT_API_KEY = "fbc1f7ff-db17-4e29-a99d-cf7a33086129"
-private lateinit var binding: ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setApiKey(savedInstanceState)
         MapKitFactory.initialize(this)
-
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         requestLocationPermissions()
     }

@@ -28,7 +28,6 @@ import com.yandex.mapkit.map.MapObjectTapListener
 import com.yandex.mapkit.map.PlacemarkMapObject
 import com.yandex.runtime.image.ImageProvider
 
-
 class MapFragment : Fragment() {
     private lateinit var map: Map
     private lateinit var binding: FragmentMapBinding
@@ -84,25 +83,28 @@ class MapFragment : Fragment() {
 
         binding = FragmentMapBinding.inflate(layoutInflater)
         map = binding.mapView.mapWindow.map
-//          TODO(): Отображение выбранной метки на карте
-//        val latitude = arguments?.getString(ListPointsFragment.LATITUDE)?.toDouble()
-//        val longitude = arguments?.getString(ListPointsFragment.LONGITUDE)?.toDouble()
-//        if (latitude != null && longitude != null) {
-//            val userSelectedFavPoint = Point(latitude, longitude)
-//            startLocation(userSelectedFavPoint)
-//        }
+        val mapKit = MapKitFactory.getInstance()
 
-
-        val userLocationLayer =
-            MapKitFactory.getInstance().createUserLocationLayer(binding.mapView.mapWindow)
+        val userLocationLayer = mapKit.createUserLocationLayer(binding.mapView.mapWindow)
         userLocationLayer.isVisible = true
-        val userLocation = userLocationLayer.cameraPosition()?.target
-        println("USER LOCATION: $userLocation")
-        startLocation(userLocation)
+
+        val arguments = arguments
+        if (arguments != null &&
+            arguments.containsKey(LATITUDE) &&
+            arguments.containsKey(LONGITUDE)
+        ) {
+            searchLocation(Point(arguments.getDouble(LATITUDE), arguments.getDouble(LONGITUDE)))
+
+            arguments.remove(LATITUDE)
+            arguments.remove(LONGITUDE)
+        } else {
+            startLocation(userLocationLayer.cameraPosition()?.target)
+        }
 
         map.addTapListener(geoObjectTapListener)
 
-        with(binding) {
+        with(binding)
+        {
             zoomIn.setOnClickListener {
                 zoomInAndOut(Zoom.IN)
             }
@@ -112,7 +114,7 @@ class MapFragment : Fragment() {
             }
 
             location.setOnClickListener {
-                searchLocation(userLocation)
+                searchLocation(userLocationLayer.cameraPosition()?.target)
             }
 
             pointList.setOnClickListener {
@@ -149,7 +151,6 @@ class MapFragment : Fragment() {
                 START_TILT
             )
         )
-        setMarkerInLocation(startLocation)
     }
 
     private fun setMarkerInLocation(location: Point?) {
@@ -163,11 +164,7 @@ class MapFragment : Fragment() {
             )
             placeMarkMapObject.opacity = 0.5f
             placeMarkMapObject.addTapListener(mapObjectTapListener)
-        } else Toast.makeText(
-            requireContext(),
-            getString(R.string.location_could_not_be_determined),
-            Toast.LENGTH_SHORT
-        ).show()
+        }
     }
 
     private fun removeMarker() {
@@ -227,6 +224,9 @@ class MapFragment : Fragment() {
         const val START_AZIMUTH = 0.0f
         const val START_TILT = 0.0f
         const val START_ZOOM = 17.0f
+
+        const val LATITUDE = "LATITUDE"
+        const val LONGITUDE = "LONGITUDE"
 
         enum class Zoom {
             IN, OUT

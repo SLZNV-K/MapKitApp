@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.mapapp.R
+import com.example.mapapp.activity.MapFragment.Companion.LATITUDE
+import com.example.mapapp.activity.MapFragment.Companion.LONGITUDE
 import com.example.mapapp.adapter.OnInteractionListener
 import com.example.mapapp.adapter.PointAdapter
 import com.example.mapapp.databinding.FragmentListPointsBinding
@@ -62,7 +64,7 @@ class ListPointsFragment : Fragment() {
 
     companion object {
         const val NAME = "NAME"
-        const val LATITUDE = "LATITUDE"
-        const val LONGITUDE = "LONGITUDE"
+//        const val LATITUDE = "LATITUDE"
+//        const val LONGITUDE = "LONGITUDE"
     }
 }
